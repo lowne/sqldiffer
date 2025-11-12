@@ -239,7 +239,7 @@ func objectifyStoredProcedures(action *c.SchemaDiffAction, tdb *pb2.Db, wg *sync
 
 	qt1 := time.Now()
 	//fmt.Println(action.StoredProcedure.Query(*tdb.Name))
-	rows, err := db.Query(action.StoredProcedure.Query(cntxt))
+	rows, err := db.Query(action.StoredProcedure.Query(*tdb.Name))
 	if err != nil {
 		if strings.Contains(err.Error(), " is an aggregate function") {
 			c.Warn("Error querying StoredProcedures", err)
